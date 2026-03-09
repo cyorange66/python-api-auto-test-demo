@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [build-system]
 requires = ["hatchling"]          # 现代、轻量级的 build backend（推荐 2025+）
 build-backend = "hatchling.build"
@@ -47,4 +48,55 @@ ignore = ["E501"]                 # 太长的行可以忽略，或调 line-lengt
 [tool.mypy]                       # 可选：类型检查配置
 python_version = "3.11"
 warn_return_any = true
+=======
+[build-system]
+requires = ["hatchling"]          # 现代、轻量级的 build backend（推荐 2025+）
+build-backend = "hatchling.build"
+
+[project]
+name = "auto-test-project"        # 小写 + 连字符，规范命名（pip 会用这个）
+version = "0.1.0"                 # 可以随便改，开发阶段无所谓
+description = "Selenium + pytest Web 自动化测试框架"
+readme = "README.md"              # 如果你有 README 文件
+requires-python = ">=3.11"        # 根据你的 Anaconda Python 3.11.5
+license = {text = "MIT"}          # 或其他 license，随意
+
+dependencies = [
+    "pytest==9.0.2",
+    "pytest-html==4.2.0",
+    "selenium==4.41.0",
+    # "webdriver-manager==4.0.2",   # 建议注释掉或删除，用 Selenium Manager 替换
+    "python-dotenv==1.2.2",
+    "requests==2.32.5",           # 如果有 API 测试保留，否则删
+    # 其他你实际在用的核心依赖可以加在这里
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.5.0",                # 现代 lint 工具（比 black + flake8 更全）
+    "mypy>=1.11.0",               # 类型检查
+    "pytest-cov>=5.0.0",          # 覆盖率报告
+    # "allure-pytest>=2.13.0",    # 如果以后想用 Allure 报告
+]
+
+[tool.pytest.ini_options]
+# 以前 pytest.ini 的内容直接迁移过来，统一管理
+pythonpath = [
+    "utils",                      # 解决 from utils.xxx import 的问题
+    ".",                          # 项目根目录也加进去，保险
+]
+testpaths = ["tests"]             # 测试文件搜索路径
+python_files = ["test_*.py", "*_test.py"]  # 默认就够了，可自定义
+addopts = "-v --html=report/report.html --self-contained-html"  # 每次运行自动生成 HTML 报告
+# 如果你常用 allure，可以加： --alluredir=allure-results
+
+[tool.ruff]                       # 可选：如果装了 ruff，当 lint 工具
+line-length = 88
+select = ["E", "F", "W", "I", "PL", "UP"]  # 常用规则
+ignore = ["E501"]                 # 太长的行可以忽略，或调 line-length
+
+[tool.mypy]                       # 可选：类型检查配置
+python_version = "3.11"
+warn_return_any = true
+>>>>>>> 26e6b4d (upload project)
 warn_unused_configs = true
