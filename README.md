@@ -1,71 +1,58 @@
-Python 接口自动化测试实战 Demo (Pytest + Requests)
-📖 项目简介
-本项目是一个基于 Python + Pytest + Requests + Pandas 的轻量级接口自动化测试框架。
-采用 Data-Driven Testing (DDT) 模式，将测试逻辑与测试数据（Excel）完全分离，支持快速扩展测试用例，适用于中小型项目的集成测试与回归测试。
+# Python API Automation Test Demo
+> 基于 Pytest + Requests + Pandas 的数据驱动接口自动化测试框架
 
-🛠️ 技术栈
-核心框架：Pytest (用例组织与执行)
+---
 
-网络请求：Requests (封装 Session 持久化连接)
+## 🌟 项目亮点
+- **数据驱动 (DDT)**：使用 Excel 存储用例，实现测试脚本与测试数据完全分离。
+- **持久化连接**：封装 Requests Session，自动处理 Cookie 及 Header 传递。
+- **可视化报告**：集成 Allure 报告，支持通过率统计及详细请求日志记录。
+- **工程化结构**：严格的分层设计，易于维护和扩展。
 
-数据驱动：Pandas + Openpyxl (高效处理 Excel 用例)
+---
 
-报告集成：Allure / Pytest-html (可视化测试报告)
-
-持续集成：兼容 GitHub Actions / Jenkins
-
-📂 项目结构
-Plaintext
-python-api-auto-test-demo/
-├── data/               # 测试数据中心
-│   └── test_cases.xlsx # 核心：Excel 维护的接口测试用例
+## 📂 项目结构
+```text
+.
+├── data/               # 测试数据 (Excel/YAML)
+│   └── test_cases.xlsx # 接口测试用例集
 ├── report/             # 测试报告输出
 │   ├── allure_results/ # Allure 原始数据
-│   └── report.html    # 独立的 HTML 报告
-├── tests/              # 测试脚本层
-│   └── test_api.py     # 自动化执行逻辑（参数化驱动）
-├── utils/              # 工具类封装
+│   └── report.html    # Pytest-html 独立报告
+├── tests/              # 测试脚本
+│   └── test_api.py     # 核心测试逻辑 (参数化驱动)
+├── utils/              # 核心组件
 │   ├── __init__.py
-│   └── request_util.py # Requests 基础请求方法封装
-├── requirements.txt    # 依赖管理
-└── run_tests.py        # 一键启动脚本
-🚀 快速开始
-1. 安装依赖
-建议在虚拟环境中执行：
+│   └── request_util.py # Requests 请求二次封装
+├── requirements.txt    # 依赖库清单
+└── run_tests.py        # 脚本启动入口
 
+类别,技术,说明
+语言,Python 3.11+,核心开发语言
+框架,Pytest,测试组织与断言
+库,Requests,HTTP 接口请求
+数据,Pandas,Excel 数据解析
+报告,Allure,交互式测试报告
+
+🚀 快速上手
+1. 环境准备
 Bash
+# 安装依赖
 pip install -r requirements.txt
 2. 执行测试
-运行所有接口测试用例并生成报告：
-
 Bash
+# 运行并生成报告
 pytest tests/test_api.py -v --alluredir=report/allure_results --html=report/report.html --self-contained-html
-3. 查看报告
-轻量版：直接打开 report/report.html。
+📊 运行效果展示
+1. Allure 报告总览
+report/result.png
 
-专业版 (Allure)：
+2. 用例执行详情
+展示数据驱动下，各用例的参数传递情况。
 
-Bash
-allure serve report/allure_results
-📊 测试报告展示
-核心亮点：支持详尽的请求日志、通过率统计及失败原因追查。
+🔧 后续规划
+[ ] 接入 CI/CD (GitHub Actions) 自动化执行。
 
-1. Allure 概览
-![alt text](report/result.png)
+[ ] 增加 JSON Schema 字段类型校验。
 
-2. 数据驱动示例
-项目支持从 Excel 动态加载如下字段进行测试：
-| case_id | method | endpoint | goods_id | expected_status |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | POST | /post | 1001 | 200 |
-| 2 | GET | /get | - | 200 |
-
-💡 未来优化方向
-[ ] 集成 Pydantic 进行响应体的 Schema 严格校验。
-
-[ ] 增加 MySQL/Redis 工具类，支持数据库断言（后置校验）。
-
-[ ] 配置 GitHub Actions 实现提交代码自动触发测试。
-
-Author: cyorange66
-Updated: 2026-03-24
+[ ] 支持多环境 (Dev/Test/Prod) 快速切换。
