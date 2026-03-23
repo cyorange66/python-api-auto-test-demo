@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\86173\auto_test_project\auenv"
+VIRTUAL_ENV="C:\Users\86173\python-api-auto-test-demo\auenv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

@@ -1,0 +1,12 @@
+# 使用 httpbin.org 进行测试，这是一个完美的接口测试工具
+test_get_request:
+  - id: 1
+    case_name: "验证GET请求参数返回"
+    params: {"user": "cyorange66", "tag": "pro"}
+    expected_status: 200
+
+test_post_request:
+  - id: 2
+    case_name: "验证POST请求JSON提交"
+    payload: {"message": "Hello Pytest"}
+    expected_status: 200

@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\86173\auto_test_project\auenv
+set VIRTUAL_ENV=C:\Users\86173\python-api-auto-test-demo\auenv
 
 if not defined PROMPT set PROMPT=$P$G
 
